@@ -1,5 +1,43 @@
 # viem
 
+## 2.16.5
+
+### Patch Changes
+
+- [#2444](https://github.com/wevm/viem/pull/2444) [`495192c3`](https://github.com/wevm/viem/commit/495192c3811b608e70a566944290d75d36211d2e) Thanks [@RealWooblay](https://github.com/RealWooblay)! - Added XR Sepolia chain
+
+- [#2451](https://github.com/wevm/viem/pull/2451) [`40f9a0f5`](https://github.com/wevm/viem/commit/40f9a0f5a63836c86322ddee9b0391dabd7b62b4) Thanks [@ChewySwap](https://github.com/ChewySwap)! - Added Dogechain multicall address.
+  Added Puppynet Shibarium chain.
+
+## 2.16.4
+
+### Patch Changes
+
+- [#2445](https://github.com/wevm/viem/pull/2445) [`8aa20a1`](https://github.com/wevm/viem/commit/8aa20a1ba293e714ce93dd948123168ecb838c14) Thanks [@radchukd](https://github.com/radchukd)! - Added lyra chain
+
+- [`62b7a9d`](https://github.com/wevm/viem/commit/62b7a9d816e587142ae75753ff6e840ec49ebf0d) Thanks [@tmm](https://github.com/tmm)! - Bumped ABIType version
+
+- [`7e95377`](https://github.com/wevm/viem/commit/7e95377ca26a87570aa16b6805f6cee58aeb9aef) Thanks [@jxom](https://github.com/jxom)! - Bumped dependencies:
+
+  - `@noble/curves`: `1.2.0` → `1.4.0`
+  - `@noble/hashes`: `1.3.2` → `1.4.0`
+  - `@scure/bip32`: `1.3.2` → `1.4.0`
+  - `@scure/bip39`: `1.2.1` → `1.3.0`
+
+- [`95753c1`](https://github.com/wevm/viem/commit/95753c12ba34472dc747100303c2cf16d42b3e95) Thanks [@jxom](https://github.com/jxom)! - Added `cause` in `HttpRequestError`.
+
+## 2.16.3
+
+### Patch Changes
+
+- [#2436](https://github.com/wevm/viem/pull/2436) [`2357376f`](https://github.com/wevm/viem/commit/2357376fa5c69c28a032bda95cf2f87bb3dac65f) Thanks [@RedHorse823](https://github.com/RedHorse823)! - Added Morph Holeksy Testnet chain.
+
+- [#2439](https://github.com/wevm/viem/pull/2439) [`76f514c5`](https://github.com/wevm/viem/commit/76f514c5856f7bb1bb329f7e7c69521ecd4596d7) Thanks [@mypeaceduck](https://github.com/mypeaceduck)! - Added multicall3 contract to BitTorrent chain.
+
+- [#2441](https://github.com/wevm/viem/pull/2441) [`a70db740`](https://github.com/wevm/viem/commit/a70db740cff1306824c8d6ba6d220fb51cfd688a) Thanks [@jiggyBu](https://github.com/jiggyBu)! - Added real & unreal chains
+
+- [#2440](https://github.com/wevm/viem/pull/2440) [`76447337`](https://github.com/wevm/viem/commit/76447337de60f272179b25374a75a422180f45cc) Thanks [@devon-n](https://github.com/devon-n)! - Added Etherlink Mainnet chain
+
 ## 2.16.2
 
 ### Patch Changes

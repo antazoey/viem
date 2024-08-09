@@ -1,4 +1,4 @@
-import { beforeAll, expect, test } from 'vitest'
+import { expect, test } from 'vitest'
 import { wagmiContractConfig } from '~test/src/abis.js'
 import { anvilMainnet } from '../../../../test/src/anvil.js'
 import { accounts } from '../../../../test/src/constants.js'
@@ -99,10 +99,6 @@ const getClient = ({
     }),
   })
 
-beforeAll(async () => {
-  await anvilMainnet.restart()
-})
-
 test('default', async () => {
   const requests: unknown[] = []
 
@@ -198,12 +194,12 @@ test('default', async () => {
               "0x000000000000000000000000f39fd6e51aad88f6f4ce6ab8827279cfffb92266",
               "0x0000000000000000000000000000000000000000000000000000000000000221",
             ],
-            "transactionHash": "0x217f9a45ed86f0f83ec4215b2bb7d644300df2be450abdeb33426f0e65b4ae48",
+            "transactionHash": "0x4c39dd461d9ad53eb3955e20480ec42392998247e868e09fe07858d2f819114a",
             "transactionIndex": "0x0",
           },
         ],
         "status": "success",
-        "transactionHash": "0x217f9a45ed86f0f83ec4215b2bb7d644300df2be450abdeb33426f0e65b4ae48",
+        "transactionHash": "0x4c39dd461d9ad53eb3955e20480ec42392998247e868e09fe07858d2f819114a",
       },
       {
         "blockHash": undefined,
@@ -224,12 +220,12 @@ test('default', async () => {
               "0x000000000000000000000000f39fd6e51aad88f6f4ce6ab8827279cfffb92266",
               "0x0000000000000000000000000000000000000000000000000000000000000222",
             ],
-            "transactionHash": "0x874f10d07221479f1244da376044194d706215c4bef981f4ac0082ff0c297ebb",
+            "transactionHash": "0x2d7626de9490a86fb47e5c0d695f209fabb2d8622c93d26c3cda5f88c51ddbaa",
             "transactionIndex": "0x1",
           },
         ],
         "status": "success",
-        "transactionHash": "0x874f10d07221479f1244da376044194d706215c4bef981f4ac0082ff0c297ebb",
+        "transactionHash": "0x2d7626de9490a86fb47e5c0d695f209fabb2d8622c93d26c3cda5f88c51ddbaa",
       },
       {
         "blockHash": undefined,
@@ -250,12 +246,12 @@ test('default', async () => {
               "0x000000000000000000000000f39fd6e51aad88f6f4ce6ab8827279cfffb92266",
               "0x0000000000000000000000000000000000000000000000000000000000000223",
             ],
-            "transactionHash": "0xa8a36afb7307ef6fbd74979ee53e89c7f19140c603cb9acbfbbf7250f904caeb",
+            "transactionHash": "0x8fc061d08b93512dd4e7cdd64f69142f357010d574152baf47513338675c3237",
             "transactionIndex": "0x2",
           },
         ],
         "status": "success",
-        "transactionHash": "0xa8a36afb7307ef6fbd74979ee53e89c7f19140c603cb9acbfbbf7250f904caeb",
+        "transactionHash": "0x8fc061d08b93512dd4e7cdd64f69142f357010d574152baf47513338675c3237",
       },
     ]
   `)

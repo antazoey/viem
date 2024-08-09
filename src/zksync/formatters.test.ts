@@ -3,13 +3,13 @@ import { describe, expect, test } from 'vitest'
 import { getBlock } from '../actions/public/getBlock.js'
 import { getTransaction } from '../actions/public/getTransaction.js'
 import { getTransactionReceipt } from '../actions/public/getTransactionReceipt.js'
-import { zkSync } from '../chains/index.js'
+import { zksync } from '../chains/index.js'
 import { createPublicClient } from '../clients/createPublicClient.js'
 import { http } from '../clients/transports/http.js'
 
 describe('block', () => {
   test('formatter', async () => {
-    const { block } = zkSync.formatters!
+    const { block } = zksync.formatters!
 
     expect(
       block.format({
@@ -275,7 +275,7 @@ describe('block', () => {
 
   test('action', async () => {
     const client = createPublicClient({
-      chain: zkSync,
+      chain: zksync,
       transport: http(),
     })
 
@@ -343,7 +343,7 @@ describe('block', () => {
 
 describe('transaction', () => {
   test('formatter', () => {
-    const { transaction } = zkSync.formatters!
+    const { transaction } = zksync.formatters!
 
     expect(
       transaction.format({
@@ -513,7 +513,7 @@ describe('transaction', () => {
 
   test('action - Priority', async () => {
     const client = createPublicClient({
-      chain: zkSync,
+      chain: zksync,
       transport: http(),
     })
 
@@ -551,7 +551,7 @@ describe('transaction', () => {
 
   test('action - Legacy', async () => {
     const client = createPublicClient({
-      chain: zkSync,
+      chain: zksync,
       transport: http(),
     })
 
@@ -587,7 +587,7 @@ describe('transaction', () => {
 
   test('action - EIP1559', async () => {
     const client = createPublicClient({
-      chain: zkSync,
+      chain: zksync,
       transport: http(),
     })
 
@@ -626,7 +626,7 @@ describe('transaction', () => {
 
   test('action - EIP712', async () => {
     const client = createPublicClient({
-      chain: zkSync,
+      chain: zksync,
       transport: http(),
     })
 
@@ -667,7 +667,7 @@ describe('transaction', () => {
 
 describe('transaction receipt', () => {
   test('formatter', () => {
-    const { transactionReceipt } = zkSync.formatters!
+    const { transactionReceipt } = zksync.formatters!
 
     expect(
       transactionReceipt.format({
@@ -1176,7 +1176,7 @@ describe('transaction receipt', () => {
 
   test('action', async () => {
     const client = createPublicClient({
-      chain: zkSync,
+      chain: zksync,
       transport: http(),
     })
 
@@ -1215,6 +1215,7 @@ describe('transaction receipt', () => {
             "address": "0x11f943b2c77b743ab90f4a0ae7d5a4e7fca3e102",
             "blockHash": "0x51f81bcdfc324a0dff2b5bec9d92e21cbebc4d5e29d3a3d30de3e03fbeab8d7f",
             "blockNumber": 1n,
+            "blockTimestamp": "0x63eb991e",
             "data": "0x",
             "l1BatchNumber": 1n,
             "logIndex": 14,
@@ -1232,6 +1233,7 @@ describe('transaction receipt', () => {
             "address": "0x9c931462ac1bf8b47a727aaad7776405ac894482",
             "blockHash": "0x51f81bcdfc324a0dff2b5bec9d92e21cbebc4d5e29d3a3d30de3e03fbeab8d7f",
             "blockNumber": 1n,
+            "blockTimestamp": "0x63eb991e",
             "data": "0x0000000000000000000000000000000000000000000000000000000000000001",
             "l1BatchNumber": 1n,
             "logIndex": 15,
@@ -1248,6 +1250,7 @@ describe('transaction receipt', () => {
             "address": "0x0000000000000000000000000000000000008006",
             "blockHash": "0x51f81bcdfc324a0dff2b5bec9d92e21cbebc4d5e29d3a3d30de3e03fbeab8d7f",
             "blockNumber": 1n,
+            "blockTimestamp": "0x63eb991e",
             "data": "0x",
             "l1BatchNumber": 1n,
             "logIndex": 16,
@@ -1267,6 +1270,7 @@ describe('transaction receipt', () => {
             "address": "0x1eb710030273e529a6ad7e1e14d4e601765ba3c6",
             "blockHash": "0x51f81bcdfc324a0dff2b5bec9d92e21cbebc4d5e29d3a3d30de3e03fbeab8d7f",
             "blockNumber": 1n,
+            "blockTimestamp": "0x63eb991e",
             "data": "0x",
             "l1BatchNumber": 1n,
             "logIndex": 17,
@@ -1285,6 +1289,7 @@ describe('transaction receipt', () => {
             "address": "0x0000000000000000000000000000000000008006",
             "blockHash": "0x51f81bcdfc324a0dff2b5bec9d92e21cbebc4d5e29d3a3d30de3e03fbeab8d7f",
             "blockNumber": 1n,
+            "blockTimestamp": "0x63eb991e",
             "data": "0x",
             "l1BatchNumber": 1n,
             "logIndex": 18,
@@ -1304,6 +1309,7 @@ describe('transaction receipt', () => {
             "address": "0x1eb710030273e529a6ad7e1e14d4e601765ba3c6",
             "blockHash": "0x51f81bcdfc324a0dff2b5bec9d92e21cbebc4d5e29d3a3d30de3e03fbeab8d7f",
             "blockNumber": 1n,
+            "blockTimestamp": "0x63eb991e",
             "data": "0x",
             "l1BatchNumber": 1n,
             "logIndex": 19,
@@ -1322,6 +1328,7 @@ describe('transaction receipt', () => {
             "address": "0x11f943b2c77b743ab90f4a0ae7d5a4e7fca3e102",
             "blockHash": "0x51f81bcdfc324a0dff2b5bec9d92e21cbebc4d5e29d3a3d30de3e03fbeab8d7f",
             "blockNumber": 1n,
+            "blockTimestamp": "0x63eb991e",
             "data": "0x0000000000000000000000000000000000000000000000000000000000000001",
             "l1BatchNumber": 1n,
             "logIndex": 20,
@@ -1338,6 +1345,7 @@ describe('transaction receipt', () => {
             "address": "0x11f943b2c77b743ab90f4a0ae7d5a4e7fca3e102",
             "blockHash": "0x51f81bcdfc324a0dff2b5bec9d92e21cbebc4d5e29d3a3d30de3e03fbeab8d7f",
             "blockNumber": 1n,
+            "blockTimestamp": "0x63eb991e",
             "data": "0x000000000000000000000000000000000000000000000000000000000000000000000000000000000000000029df43f75149d0552475a6f9b2ac96e28796ed0b",
             "l1BatchNumber": 1n,
             "logIndex": 21,
@@ -1354,6 +1362,7 @@ describe('transaction receipt', () => {
             "address": "0x0000000000000000000000000000000000008006",
             "blockHash": "0x51f81bcdfc324a0dff2b5bec9d92e21cbebc4d5e29d3a3d30de3e03fbeab8d7f",
             "blockNumber": 1n,
+            "blockTimestamp": "0x63eb991e",
             "data": "0x",
             "l1BatchNumber": 1n,
             "logIndex": 22,
@@ -1373,6 +1382,7 @@ describe('transaction receipt', () => {
             "address": "0x000000000000000000000000000000000000800a",
             "blockHash": "0x51f81bcdfc324a0dff2b5bec9d92e21cbebc4d5e29d3a3d30de3e03fbeab8d7f",
             "blockNumber": 1n,
+            "blockTimestamp": "0x63eb991e",
             "data": "0x0000000000000000000000000000000000000000000000000000000000000000",
             "l1BatchNumber": 1n,
             "logIndex": 23,
@@ -1401,7 +1411,7 @@ describe('transaction receipt', () => {
 
 describe('transactionRequest', () => {
   test('formatter', () => {
-    const { transactionRequest } = zkSync.formatters!
+    const { transactionRequest } = zksync.formatters!
 
     const baseRequest = {
       from: '0x0f16e9b0d03470827a95cdfd0cb8a8a3b46969b9' as `0x${string}`,

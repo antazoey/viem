@@ -4,13 +4,16 @@ import pkg from '../src/package.json'
 import { sidebar } from './sidebar'
 
 export default defineConfig({
-  // banner: {
-  //   backgroundColor: '#3a393b',
-  //   textColor: 'white',
-  //   content:
-  //     'Viem is participating in the Gitcoin Grants 20 round. Consider [supporting the project](https://explorer.gitcoin.co/#/round/42161/27/20). Thank you. 🙏',
-  // },
-  baseUrl: 'https://viem.sh',
+  banner: {
+    backgroundColor: '#3a393b',
+    textColor: 'white',
+    content:
+      'Viem is participating in Gitcoin Grants round 21. Consider [supporting the project](https://explorer.gitcoin.co/#/round/42161/389/73). Thank you. 🙏',
+  },
+  baseUrl:
+    process.env.VERCEL_ENV === 'production'
+      ? 'https://viem.sh'
+      : process.env.VERCEL_URL,
   title: 'Viem',
   titleTemplate: '%s · Viem',
   description:
@@ -88,16 +91,24 @@ export default defineConfig({
               'https://raw.githubusercontent.com/wevm/.github/main/content/sponsors/stripe-light.svg',
           },
           {
-            name: 'zkSync',
+            name: 'ZKsync',
             link: 'https://zksync.io',
             image:
               'https://raw.githubusercontent.com/wevm/.github/main/content/sponsors/zksync-light.svg',
           },
+        ],
+        [
           {
             name: 'Brave',
             link: 'https://brave.com',
             image:
               'https://raw.githubusercontent.com/wevm/.github/main/content/sponsors/brave-light.svg',
+          },
+          {
+            name: 'Linea',
+            link: 'https://linea.build',
+            image:
+              'https://raw.githubusercontent.com/wevm/.github/main/content/sponsors/linea-light.svg',
           },
         ],
       ],
@@ -210,6 +221,29 @@ export default defineConfig({
               'https://raw.githubusercontent.com/wevm/.github/main/content/sponsors/reservoir-light.svg',
           },
         ],
+        [
+          {
+            name: 'Uniswap',
+            link: 'https://uniswap.org',
+            image:
+              'https://raw.githubusercontent.com/wevm/.github/main/content/sponsors/uniswap-light.svg',
+          },
+          {
+            name: '',
+            image: '',
+            link: 'https://github.com/sponsors/wevm',
+          },
+          {
+            name: '',
+            image: '',
+            link: 'https://github.com/sponsors/wevm',
+          },
+          {
+            name: '',
+            image: '',
+            link: 'https://github.com/sponsors/wevm',
+          },
+        ],
       ],
     },
   ],
@@ -225,11 +259,15 @@ export default defineConfig({
       text: 'Extensions',
       items: [
         {
+          text: 'Account Abstraction',
+          link: '/account-abstraction',
+        },
+        {
           text: 'OP Stack',
           link: '/op-stack',
         },
         {
-          text: 'zkSync',
+          text: 'ZKsync',
           link: '/zksync',
         },
         {

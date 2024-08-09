@@ -1,10 +1,10 @@
 import { describe, expect, test, vi } from 'vitest'
 
 import {
-  Mock4337Account,
-  Mock4337AccountFactory,
   OffchainLookupExample,
-} from '~test/contracts/generated.js'
+  SoladyAccount07,
+  SoladyAccountFactory07,
+} from '~contracts/generated.js'
 import {
   baycContractConfig,
   usdcContractConfig,
@@ -14,8 +14,8 @@ import { createCcipServer } from '~test/src/ccip.js'
 import { accounts } from '~test/src/constants.js'
 import { blobData, kzg } from '~test/src/kzg.js'
 import {
-  deployMock4337Account,
   deployOffchainLookupExample,
+  deploySoladyAccount_07,
   mainnetClient,
 } from '~test/src/utils.js'
 
@@ -113,16 +113,9 @@ describe('ccip', () => {
         data: calldata,
         to: contractAddress!,
       }),
-    ).rejects.toMatchInlineSnapshot(`
-      [CallExecutionError: Execution reverted with reason: custom error 556f1830:000000000000000000000000cc5bc84c…00000000000000000000000000000000 (576 bytes).
-
-      Raw Call Arguments:
-        to:    0xcc5bc84c3fdbcf262aadd9f76652d6784293dd9e
-        data:  0xbf40fac1000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000096a786f6d2e7669656d0000000000000000000000000000000000000000000000
-
-      Details: execution reverted: custom error 556f1830:000000000000000000000000cc5bc84c…00000000000000000000000000000000 (576 bytes)
-      Version: viem@x.y.z]
-    `)
+    ).rejects.toThrowError(
+      'Execution reverted with reason: custom error 556f1830',
+    )
 
     await server.close()
   })
@@ -594,7 +587,7 @@ describe('errors', () => {
         factory: wagmiContractConfig.address,
       }),
     ).rejects.toThrowErrorMatchingInlineSnapshot(`
-      [ViemError: Cannot provide both \`code\` & \`factory\`/\`factoryData\` as parameters.
+      [BaseError: Cannot provide both \`code\` & \`factory\`/\`factoryData\` as parameters.
 
       Version: viem@x.y.z]
     `)
@@ -607,7 +600,7 @@ describe('errors', () => {
         to: '0x0000000000000000000000000000000000000000',
       }),
     ).rejects.toThrowErrorMatchingInlineSnapshot(`
-      [ViemError: Cannot provide both \`code\` & \`to\` as parameters.
+      [BaseError: Cannot provide both \`code\` & \`to\` as parameters.
 
       Version: viem@x.y.z]
     `)
@@ -1039,21 +1032,21 @@ describe('batch call', () => {
 
 describe('deployless call (factory)', () => {
   test('default', async () => {
-    const { factoryAddress } = await deployMock4337Account()
+    const { factoryAddress } = await deploySoladyAccount_07()
 
     const address = await readContract(client, {
       account: accounts[0].address,
-      abi: Mock4337AccountFactory.abi,
+      abi: SoladyAccountFactory07.abi,
       address: factoryAddress,
       functionName: 'getAddress',
       args: [pad('0x0')],
     })
     const data = encodeFunctionData({
-      abi: Mock4337Account.abi,
+      abi: SoladyAccount07.abi,
       functionName: 'eip712Domain',
     })
     const factoryData = encodeFunctionData({
-      abi: Mock4337AccountFactory.abi,
+      abi: SoladyAccountFactory07.abi,
       functionName: 'createAccount',
       args: [accounts[0].address, pad('0x0')],
     })
@@ -1064,24 +1057,35 @@ describe('deployless call (factory)', () => {
       factoryData,
       to: address,
     })
-    expect(result).toMatchInlineSnapshot(`
-      {
-        "data": "0x0f0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000e000000000000000000000000000000000000000000000000000000000000001200000000000000000000000000000000000000000000000000000000000000001000000000000000000000000d8a0ab4f74d04b9ee34ceccef647051601720dc100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000160000000000000000000000000000000000000000000000000000000000000000f4d6f636b343333374163636f756e740000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000131000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
-      }
-    `)
 
-    const decoded = decodeFunctionResult({
-      abi: Mock4337Account.abi,
+    const [
+      fields,
+      name,
+      version,
+      chainId,
+      verifyingContract,
+      salt,
+      extensions,
+    ] = decodeFunctionResult({
+      abi: SoladyAccount07.abi,
       data: result.data!,
       functionName: 'eip712Domain',
     })
-    expect(decoded).toMatchInlineSnapshot(`
+
+    expect(verifyingContract).toBeDefined()
+    expect([
+      fields,
+      name,
+      version,
+      chainId,
+      salt,
+      extensions,
+    ]).toMatchInlineSnapshot(`
       [
         "0x0f",
-        "Mock4337Account",
+        "SoladyAccount",
         "1",
         1n,
-        "0xd8a0AB4f74d04b9EE34CECCEF647051601720Dc1",
         "0x0000000000000000000000000000000000000000000000000000000000000000",
         [],
       ]
@@ -1172,7 +1176,7 @@ describe('deployless call (bytecode)', () => {
           "success": true,
         },
         {
-          "returnData": "0x0000000000000000000000000000000000000000000000000000000000000277",
+          "returnData": "0x0000000000000000000000000000000000000000000000000000000000000288",
           "success": true,
         },
       ]

@@ -13,6 +13,8 @@ import {
   type EncodeDeployDataErrorType,
   encodeDeployData,
 } from '../../utils/abi/encodeDeployData.js'
+import { getAddress } from '../../utils/address/getAddress.js'
+import { isAddressEqual } from '../../utils/address/isAddressEqual.js'
 import {
   type IsBytesEqualErrorType,
   isBytesEqual,
@@ -21,10 +23,10 @@ import { type IsHexErrorType, isHex } from '../../utils/data/isHex.js'
 import { type ToHexErrorType, bytesToHex } from '../../utils/encoding/toHex.js'
 import { getAction } from '../../utils/getAction.js'
 import { isErc6492Signature } from '../../utils/signature/isErc6492Signature.js'
+import { recoverAddress } from '../../utils/signature/recoverAddress.js'
 import { serializeErc6492Signature } from '../../utils/signature/serializeErc6492Signature.js'
 import { serializeSignature } from '../../utils/signature/serializeSignature.js'
 import { type CallErrorType, type CallParameters, call } from './call.js'
-import { getCode } from './getCode.js'
 
 export type VerifyHashParameters = Pick<
   CallParameters,
@@ -55,8 +57,8 @@ export type VerifyHashErrorType =
  * @param parameters - {@link VerifyHashParameters}
  * @returns Whether or not the signature is valid. {@link VerifyHashReturnType}
  */
-export async function verifyHash<TChain extends Chain | undefined>(
-  client: Client<Transport, TChain>,
+export async function verifyHash<chain extends Chain | undefined>(
+  client: Client<Transport, chain>,
   parameters: VerifyHashParameters,
 ): Promise<VerifyHashReturnType> {
   const { address, factory, factoryData, hash, signature, ...rest } = parameters
@@ -75,10 +77,6 @@ export async function verifyHash<TChain extends Chain | undefined>(
 
     // If the signature is already wrapped, return the signature.
     if (isErc6492Signature(signatureHex)) return signatureHex
-
-    const bytecode = await getAction(client, getCode, 'getCode')({ address })
-    // If the Smart Account is deployed, return the plain signature.
-    if (bytecode) return signatureHex
 
     // If the Smart Account is not deployed, wrap the signature with a 6492 wrapper
     // to perform counterfactual validation.
@@ -105,6 +103,15 @@ export async function verifyHash<TChain extends Chain | undefined>(
 
     return isBytesEqual(data ?? '0x0', '0x1')
   } catch (error) {
+    // Fallback attempt to verify the signature via ECDSA recovery.
+    try {
+      const verified = isAddressEqual(
+        getAddress(address),
+        await recoverAddress({ hash, signature }),
+      )
+      if (verified) return true
+    } catch {}
+
     if (error instanceof CallExecutionError) {
       // if the execution fails, the signature was not valid and an internal method inside of the validator reverted
       // this can happen for many reasons, for example if signer can not be recovered from the signature

@@ -1,5 +1,35 @@
 # viem
 
+## 2.21.22
+
+### Patch Changes
+
+- [#2838](https://github.com/wevm/viem/pull/2838) [`f0695c5`](https://github.com/wevm/viem/commit/f0695c5c8c9fb29b78a7ca8c07b176191e550e39) Thanks [@qi-0826](https://github.com/qi-0826)! - Added Superposition chain.
+
+- [#2840](https://github.com/wevm/viem/pull/2840) [`e9cf6ee`](https://github.com/wevm/viem/commit/e9cf6eea9bf15ee57a6db42a2502eda6a733e149) Thanks [@akshatmittal](https://github.com/akshatmittal)! - Added Unichain Sepolia Testnet chain.
+
+- [`0ff9db8`](https://github.com/wevm/viem/commit/0ff9db844c9b2f11f3f726da20b132c0dc11d37f) Thanks [@jxom](https://github.com/jxom)! - Added `decodeCalls` as an optional property on `toSmartAccount`.
+
+- [#2837](https://github.com/wevm/viem/pull/2837) [`2f46c00`](https://github.com/wevm/viem/commit/2f46c00e62c90f406da666b3544c427867135a84) Thanks [@qi-0826](https://github.com/qi-0826)! - Added Electroneum chain.
+
+- [`95b316c`](https://github.com/wevm/viem/commit/95b316cb29375c9041ec5a92558cc975f41e9ba3) Thanks [@jxom](https://github.com/jxom)! - Added `stateOverride` to `estimateUserOperationGas` & `prepareUserOperation`.
+
+## 2.21.21
+
+### Patch Changes
+
+- [#2834](https://github.com/wevm/viem/pull/2834) [`10dcb7ab`](https://github.com/wevm/viem/commit/10dcb7ab6ac5ecf1e46e8afa3245ffc21e245365) Thanks [@LordMarkDev](https://github.com/LordMarkDev)! - Added Zenchain Testnet
+
+## 2.21.20
+
+### Patch Changes
+
+- [#2828](https://github.com/wevm/viem/pull/2828) [`fa546476`](https://github.com/wevm/viem/commit/fa5464766509a1806b0726ddea11e3ea2af34500) Thanks [@ezynda3](https://github.com/ezynda3)! - Updated opBNB Explorer URLs.
+
+- [#2832](https://github.com/wevm/viem/pull/2832) [`4c928cba`](https://github.com/wevm/viem/commit/4c928cbaa01f89ba78989efa390579cb60a6759c) Thanks [@Zhangnong](https://github.com/Zhangnong)! - Added MAP Protocol chain.
+
+- [#2830](https://github.com/wevm/viem/pull/2830) [`690f6f50`](https://github.com/wevm/viem/commit/690f6f507c86657336c102dec29d6740b3653691) Thanks [@Zhangnong](https://github.com/Zhangnong)! - Added Go Chain.
+
 ## 2.21.19
 
 ### Patch Changes

@@ -1,5 +1,13 @@
 # viem
 
+## 2.57.2
+
+### Patch Changes
+
+- [#5157](https://github.com/wevm/viem/pull/5157) [`bc45023eb72279e225ed924ac93e4aae1589356c`](https://github.com/wevm/viem/commit/bc45023eb72279e225ed924ac93e4aae1589356c) Thanks [@myfxpaddy](https://github.com/myfxpaddy)! - Added CRYMAD Chain and CRYMAD Chain L2 chains.
+
+- [#5156](https://github.com/wevm/viem/pull/5156) [`3f38e899dca519598165091c363faa9c884630bd`](https://github.com/wevm/viem/commit/3f38e899dca519598165091c363faa9c884630bd) Thanks [@decofe](https://github.com/decofe)! - Fixed the Tempo preparation hook to preserve explicitly supplied expiring nonces for TIP-1106.
+
 ## 2.57.1
 
 ### Patch Changes
